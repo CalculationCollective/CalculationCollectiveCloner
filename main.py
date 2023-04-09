@@ -9,5 +9,8 @@ if not response.ok:
 if not os.path.isdir("CalculationCollective/"):
     os.mkdir("CalculationCollective/")
 
+repositories = os.listdir("./CalculationCollective")
+
 for repo in response.json():
-    os.system(f"git -C CalculationCollective/ clone {repo['clone_url']}")
+    if not repo["name"] in repositories:
+        os.system(f"git -C CalculationCollective/ clone {repo['clone_url']}")
